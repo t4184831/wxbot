@@ -3,8 +3,14 @@
 set -euo pipefail
 cd /opt/wxbot
 echo "[1/3] system + python deps"
-sudo apt-get update -y >/dev/null
-sudo apt-get install -y python3-venv python3-pip git >/dev/null
+if command -v apt-get >/dev/null; then
+  sudo apt-get update -y >/dev/null
+  sudo apt-get install -y python3-venv python3-pip git >/dev/null
+elif command -v dnf >/dev/null; then
+  sudo dnf install -y python3 python3-pip git >/dev/null
+else
+  sudo yum install -y python3 python3-pip git >/dev/null
+fi
 python3 -m venv .venv
 ./.venv/bin/pip install -q --upgrade pip
 ./.venv/bin/pip install -q -r requirements.txt
