@@ -1,0 +1,14 @@
+[Unit]
+Description=WxEdge tracking dashboard (paper track record)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/wxbot
+ExecStart=/opt/wxbot/.venv/bin/streamlit run dashboard.py --server.address 0.0.0.0 --server.port 8535 --server.headless true --browser.gatherUsageStats false
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

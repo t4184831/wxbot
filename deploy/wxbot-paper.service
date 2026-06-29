@@ -1,0 +1,9 @@
+[Unit]
+Description=WxEdge PAPER loop (no wallet, read-only — logs paper trades vs real outcomes)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/wxbot
+ExecStart=/opt/wxbot/.venv/bin/python scripts/run_paper.py 20
