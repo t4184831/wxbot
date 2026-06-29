@@ -1,0 +1,20 @@
+[Unit]
+Description=WxEdge maker loop (Polymarket weather)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/wxbot
+# keys live here, readable only by root (chmod 600). NEVER commit this file.
+EnvironmentFile=/opt/wxbot/wxbot.env
+# tiny by design: 2 orders, $100 cap, reconcile every 5 min. Raise only after it proves out.
+ExecStart=/opt/wxbot/.venv/bin/python scripts/run_maker.py --live --loop 300 --max-orders 2 --cap 100
+Restart=on-failure
+RestartSec=30
+# safety: if it crashes repeatedly, stop rather than thrash
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

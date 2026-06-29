@@ -1,0 +1,8 @@
+requests>=2.31
+numpy>=1.26
+pandas>=2.0
+python-dateutil>=2.8
+streamlit>=1.36
+tzdata>=2024.1          # zoneinfo data (needed on some macOS/Linux)
+# live trading only (optional):
+# py-clob-client>=0.17

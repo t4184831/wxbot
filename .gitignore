@@ -1,0 +1,14 @@
+# NEVER commit secrets or local state
+wxbot.env
+*.env
+.venv/
+.venv-*/
+__pycache__/
+*.pyc
+data/metarcache/
+data/pricecache/
+data/*.log
+data/paper_trades.jsonl
+data/paper_open_orders.json
+data/paper_positions.json
+.streamlit/secrets.toml
